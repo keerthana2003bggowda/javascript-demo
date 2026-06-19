@@ -1,5 +1,5 @@
 pipeline {
-    agent javascript
+    agent { label 'javascript' }
 
     triggers {
         pollSCM('H/1 * * * *')   // checks GitHub every 1 minute
