@@ -1,9 +1,9 @@
 pipeline {
     agent { label 'javascript' }
 
-    triggers {
-        pollSCM('H/1 * * * *')   // checks GitHub every 1 minute
-    }
+    // triggers {
+    //     pollSCM('H/1 * * * *')   // checks GitHub every 1 minute
+    // }
 
     stages {
 
