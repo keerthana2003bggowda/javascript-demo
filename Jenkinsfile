@@ -20,15 +20,25 @@ pipeline {
             steps {
                 nodejs(nodeJSInstallationName: 'nodejs24.16.0') {
                     sh "npm install"
+                    sh "npm start"
                 }
             }
         }
 
-        stage('Run App') {
-            steps {
-                sh "npm start"
-            }
-        }
+        // stage('Run App') {
+        //     steps {
+        //         sh "npm start"
+        //     }
+        // }
 
+
+    }
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
     }
 }
