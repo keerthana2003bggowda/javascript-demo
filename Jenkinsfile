@@ -16,19 +16,19 @@ pipeline {
             }
         }
 
-        // stage('Build') {
-        //     steps {
-        //         nodejs(nodeJSInstallationName: 'nodejs22.40.0') {
-        //             sh "npm install"
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'nodejs22.40.0') {
+                    sh "npm install"
+                }
+            }
+        }
 
-        // stage('Run App') {
-        //     steps {
-        //         sh "npm start"
-        //     }
-        // }
+        stage('Run App') {
+            steps {
+                sh "npm start"
+            }
+        }
 
     }
 }
