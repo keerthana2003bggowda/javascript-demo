@@ -13,6 +13,15 @@ pipeline {
                     url: 'https://github.com/keerthana2003bggowda/javascript-demo.git'
             }
         }
+         stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                        sonar-scanner
+                    '''
+                }
+            }
+        }
 
         stage('Build') {
             steps {
