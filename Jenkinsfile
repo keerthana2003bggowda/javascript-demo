@@ -29,16 +29,17 @@ pipeline {
                 }
             }
         }
-        stage('Publish to JFrog') {
+       stage('Publish to JFrog') {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'artifactory-creds',
                     usernameVariable: 'JFROG_USER',
                     passwordVariable: 'JFROG_TOKEN'
                 )]) {
-                    curl -u $JFROG_USER:$JFROG_TOKEN \
-                        -T javascript-demo-${BUILD_NUMBER}.zip \
-                        "http://13.203.219.26:8082/artifactory/javascript-artifacts/javascript-demo-${BUILD_NUMBER}.zip"
+                    sh '''
+                        zip -r javascript-demo-${BUILD_NUMBER}.zip . -x "*.git*" -x "node_modules/*"
+                        curl -u $JFROG_USER:$JFROG_TOKEN -T javascript-demo-${BUILD_NUMBER}.zip "http://13.203.219.26:8082/artifactory/javascript-artifacts/javascript-demo-${BUILD_NUMBER}.zip"
+                    '''
                 }
             }
         }
