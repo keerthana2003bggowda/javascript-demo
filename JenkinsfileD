@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh 'docker pull "$IMAGE:$TAG"'
                 sh 'docker rm -f "$CONTAINER" || true'
-                sh 'docker run -d --name "$CONTAINER" -p 3000:3000 "$IMAGE:$TAG"'
+                sh 'docker run -d --name "$CONTAINER" -p 3000:80 "$IMAGE:$TAG"'
             }
         }
         stage('Test') {
